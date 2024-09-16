@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bukti Pemesanan</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f9f4ef;
+            color: #2c2c2c;
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            width: 100%;
+            background-color: #ffffff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: row;
+        }
+
+        .bagian-kiri {
+            width: 40%;
+            background-color: #dbc190;
+            padding: 40px;
+            color: #fff;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .bagian-kiri::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 80%);
+            transform: rotate(30deg);
+        }
+
+        .bagian-kiri .logo {
+            width: 120px;
+            height: 120px;
+            background-color: #fff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .bagian-kiri .logo img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+        }
+
+        .bagian-kiri .info {
+            font-size: 1rem;
+            margin-top: 20px;
+            line-height: 1.8;
+        }
+
+        .bagian-kiri h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .bagian-kanan {
+            width: 60%;
+            padding: 40px;
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .info-pemesanan {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .item-menu {
+            margin-bottom: 30px;
+        }
+
+        .item-menu-individu {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .item-menu-individu:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .item-menu-individu img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .info-item-menu {
+            flex-grow: 1;
+            padding-left: 20px;
+        }
+
+        .nama-item-menu {
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .harga-item-menu {
+            color: #c9a86c;
+            font-weight: 600;
+        }
+
+        .bagian-total {
+            background-color: #f9f4ef;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .baris-total {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .baris-total.total-akhir {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #c9a86c;
+            border-top: 2px solid #e0e0e0;
+            padding-top: 10px;
+            margin-top: 10px;
+        }
+
+        .pilihan-pembayaran {
+            margin-top: 20px;
+        }
+
+        .pilihan-pembayaran h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .metode-pembayaran {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .metode-pembayaran-individu {
+            padding: 10px 20px;
+            background-color: #f9f4ef;
+            border: 1px solid #c9a86c;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            color: #c9a86c;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .metode-pembayaran-individu:hover {
+            background-color: #c9a86c;
+            color: white;
+        }
+
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #888;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .footer a {
+            color: #c9a86c;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 1024px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .bagian-kiri, .bagian-kanan {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="bagian-kiri">
+            <div class="logo">
+                <img src="logo.png" alt="Logo Restoran">
+            </div>
+            <h1>Bukti Pemesanan</h1>
+            <div class="info">
+                <p><strong>Pemesan:</strong> Intan Najwa Zahra</p>
+                <p><strong>Tanggal:</strong> 17 September 2024</p>
+                <br>
+                <p><strong>Pelayan:</strong> Muhammad Akhyat Tariq R</p>
+                <p><strong>Alamat:</strong> Jl. Pramuka 6 No.03, Samarinda</p>
+            </div>
+        </div>
+        <div class="bagian-kanan">
+            <div>
+                <div class="item-menu">
+                    <div class="item-menu-individu">
+                        <img src="nasi-goreng.jpg" alt="Nasi Goreng Spesial">
+                        <div class="info-item-menu">
+                            <div class="nama-item-menu">Nasi Goreng Spesial</div>
+                            <div class="harga-item-menu">Rp 25.000 x 1</div>
+                        </div>
+                        <div class="total-item-menu">Rp 25.000</div>
+                    </div>
+                    <div class="item-menu-individu">
+                        <img src="es-teh.jpg" alt="Es Teh Manis">
+                        <div class="info-item-menu">
+                            <div class="nama-item-menu">Es Teh Manis</div>
+                            <div class="harga-item-menu">Rp 5.000 x 1</div>
+                        </div>
+                        <div class="total-item-menu">Rp 5.000</div>
+                    </div>
+                </div>
+                <div class="bagian-total">
+                    <div class="baris-total">
+                        <span>Subtotal</span>
+                        <span>Rp 30.000</span>
+                    </div>
+                    <div class="baris-total">
+                        <span>Pajak (10%)</span>
+                        <span>Rp 3.000</span>
+                    </div>
+                    <div class="baris-total total-akhir">
+                        <span>Total</span>
+                        <span>Rp 33.000</span>
+                    </div>
+                </div>
+                <div class="pilihan-pembayaran">
+                    <h3>Metode Pembayaran</h3>
+                    <div class="metode-pembayaran">
+                        <div class="metode-pembayaran-individu">QRIS</div>
+                        <div class="metode-pembayaran-individu">TUNAI</div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <p>Terima kasih telah berbelanja di restoran kami.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
